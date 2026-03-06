@@ -1,4 +1,3 @@
-import  re
 adwentures_of_tom_sawer = """\
 Tom gave up the brush with reluctance in his .... face but alacrity
 in his heart. And while
@@ -31,7 +30,7 @@ print(adwentures_of_tom_sawer)
 # task 02 ==
 """ Замініть .... на пробіл
 """
-adwentures_of_tom_sawer = adwentures_of_tom_sawer.replace(" .... ", " ")
+adwentures_of_tom_sawer = adwentures_of_tom_sawer.replace("....", " ")
 print(f'2. {"*-----*" * 20}')
 print(adwentures_of_tom_sawer)
 
