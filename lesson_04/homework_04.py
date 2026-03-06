@@ -63,7 +63,7 @@ print(adwentures_of_tom_sawer.find("Tom", adwentures_of_tom_sawer.find("Tom") + 
 """ Розділіть змінну adwentures_of_tom_sawer по кінцю речення.
 Збережіть результат у змінній adwentures_of_tom_sawer_sentences
 """
-adwentures_of_tom_sawer_sentences = adwentures_of_tom_sawer.replace(". ", ".").split(".")[:-1]
+adwentures_of_tom_sawer_sentences = adwentures_of_tom_sawer.split(".")[:-1]
 print(f'7. {"*-----*" * 20}')
 print(adwentures_of_tom_sawer_sentences)
 
@@ -89,5 +89,10 @@ else:
 """ Виведіть кількість слів останнього речення з adwentures_of_tom_sawer_sentences.
 """
 print(f'10. {"*-----*" * 20}')
-print(len(adwentures_of_tom_sawer_sentences[-1]))
+last_sentence = adwentures_of_tom_sawer_sentences[-1]
+# рахуємо кількість слів
+word_count = len(last_sentence.split())
+print("Кількість слів у останньому реченні:", word_count)
+
+
 
