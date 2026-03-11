@@ -35,7 +35,7 @@ print(people_records)
 # 3 - check that all people in modified list with records indexes 6, 10, 13
 #   have age >=30. Print condition check result
 indexes_to_check = [6, 10, 13]
-condition = [people_records[i][2] >= 30 for i in indexes_to_check]
+condition = all([people_records[i][2] >= 30 for i in indexes_to_check])
 print("Усі мають вік >=30:", condition)
 
 
