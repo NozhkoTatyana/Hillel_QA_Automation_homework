@@ -47,16 +47,16 @@ search_criteria = (2017, 1.6, 36000)
 # We should print up to five (5) first found elements
 
 
-filtered_cars = [
-    (year, engine_volume, price) for color, year, engine_volume,car_type, price in car_data.values()
+filtered_cars = {
+     model: (year, engine_volume, price) for model,(color, year, engine_volume,car_type, price) in car_data.items()
      if year >= search_criteria[0] and engine_volume >= search_criteria[1] and price <= search_criteria[2]
-]
+}
 print(filtered_cars)
 
-sorted_cars = sorted(filtered_cars, key=lambda price: price[2])
+sorted_cars = dict(sorted(filtered_cars.items(), key=lambda val_price: val_price[0][2]))
 print(sorted_cars)
 
-five_first_found_elements = sorted_cars[:5]
+five_first_found_elements = dict(list(sorted_cars.items())[:5])
 print(five_first_found_elements)
 
 
