@@ -53,7 +53,7 @@ filtered_cars = {
 }
 print(filtered_cars)
 
-sorted_cars = dict(sorted(filtered_cars.items(), key=lambda val_price: val_price[0][2]))
+sorted_cars = dict(sorted(filtered_cars.items(), key=lambda val_price: val_price[1][2]))
 print(sorted_cars)
 
 five_first_found_elements = dict(list(sorted_cars.items())[:5])
