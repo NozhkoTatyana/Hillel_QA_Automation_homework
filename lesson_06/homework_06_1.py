@@ -11,6 +11,6 @@ for ch in text:
         unique_once.append(ch)
 
 if len(unique_once) > 10:
-    print("True", unique_once)
+    print("True")
 else:
-    print("False", unique_once)
+    print("False")
