@@ -146,7 +146,7 @@ sum_of_even_numbers = sum_even_numbers(numbers_list)
 print(f"Сума парних чисел становить: {sum_of_even_numbers}")
 
 
-def check_age_condition(people_records: list[list], indexes: list[int]) -> bool:
+def check_age_condition(people_records: list[tuple], indexes: list[int]) -> bool:
   """
   Перевіряє, чи всі люди у списку `people_records` за заданими індексами
   мають вік 30 років або більше.
