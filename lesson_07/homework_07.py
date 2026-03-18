@@ -105,34 +105,60 @@ print(f"Індекс входження: {pos}")  # -1
 перетворіть їх у 4 функції, що отримують значення та повертають результат.
 Обоязково документуйте функції та дайте зрозумілі імена змінним.
 """
-def sum_numbers(num1: int, num2: int) -> int:
-    """
-    Обчислює суму двох чисел.
-    """
-    return num1 + num2
-
-def average_numbers(list_numbers: list[int]) -> float | str:
-    """
-    Обчислює середнє арифметичне списку чисел.
-    Якщо аргумент не список — повертає повідомлення про помилку.
-    """
-    if not isinstance(list_numbers, list):
-        return "Аргумент має бути списком чисел"
-    return sum(list_numbers) / len(list_numbers)
 
 
-def longest_word(words: list[str]) -> str:
+def ask_word_with_h() -> None:
     """
-    Повертає найдовше слово зі списку.
+    Функція просить користувача ввести слово, яке містить літеру 'h' або 'H'.
+    Цикл повторюється, доки користувач не введе правильне слово.
     """
-    return max(words, key=len)
+    while True:
+        word: str = input("Введіть слово з літерою 'h/H': ")
+        if "h" in word.lower():
+            print("Дякую, слово підходить!")
+            break
+        else:
+            print("У слові немає 'h/H'. Спробуйте ще раз.")
+
+ask_word_with_h()
 
 
-def find_substring(str1: str, str2: str) -> int:
+def extract_strings(lst: list) -> list[str]:
     """
-    Повертає індекс першого входження рядка str2 у рядок str1.
-    Якщо рядок str2 не є підрядком рядка str1 — повертає -1.
+    Формує новий список, який містить лише елементи типу str
+    з переданого списку.
     """
-    if str2 in str1:
-        return str1.find(str2)
-    return -1
+    return [item for item in lst if isinstance(item, str)]
+
+lst1 = ['1', '2', 3, True, 'False', 5, '6', 7, 8, 'Python', 9, 0, 'Lorem Ipsum']
+lst2 = extract_strings(lst1)
+print(lst2)
+
+
+def sum_even_numbers(numbers: list[int]) -> int:
+    """
+    Обчислює суму всіх парних чисел у списку.
+    """
+    return sum(num for num in numbers if num % 2 == 0)
+
+numbers_list = [1, 5, 6, 89, 41, 3, 42, 2, 4]
+sum_of_even_numbers = sum_even_numbers(numbers_list)
+print(f"Сума парних чисел становить: {sum_of_even_numbers}")
+
+
+def check_age_condition(people_records: list[list], indexes: list[int]) -> bool:
+  """
+  Перевіряє, чи всі люди у списку `people_records` за заданими індексами
+  мають вік 30 років або більше.
+  """
+  return all(people_records[i][2] >= 30 for i in indexes)
+
+indexes_to_check = [2, 3, 0]
+people_records = [
+  ('John', 'Doe', 28, 'Engineer', 'New York'),
+  ('Alice', 'Smith', 35, 'Teacher', 'Los Angeles'),
+  ('Bob', 'Johnson', 45, 'Doctor', 'Chicago'),
+  ('Emily', 'Williams', 30, 'Artist', 'San Francisco'),
+]
+condition = check_age_condition(people_records, indexes_to_check)
+print("Усі мають вік >=30:", condition)
