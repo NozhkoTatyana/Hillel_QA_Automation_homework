@@ -36,11 +36,11 @@ def log_event(username: str, status: str):
     else:
         logger.error(log_message)
 
-
-log_event("userX", "success")
-log_event("userX", "expired")
-log_event("userX", "failed")
-log_event("user_12", "expired")
-log_event("user_11", "failed")
-log_event("user_10", "success")
+if '__main__' == __name__:
+    log_event("userX", "success")
+    log_event("userX", "expired")
+    log_event("userX", "failed")
+    log_event("user_12", "expired")
+    log_event("user_11", "failed")
+    log_event("user_10", "success")
 
