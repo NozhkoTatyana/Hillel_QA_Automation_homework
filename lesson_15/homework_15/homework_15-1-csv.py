@@ -6,45 +6,48 @@ import csv
 Результат запишіть у файл result_<your_second_name>.csv
 """
 
-base = Path(__file__).parent.parent
+def remove_duplicates(files, result_file):
+    seen = set()
+    unique_rows = []
+    headers = None
 
-files = [
-    base / "ideas_for_test" / "work_with_csv" / "r-m-c.csv",
-    base / "ideas_for_test" / "work_with_csv" / "rmc.csv"
-]
+    delimiters = {
+        "rmc.csv": ";",
+        "r-m-c.csv": ","
+    }
 
-result_file = Path(__file__).parent / "result" / "result_nozhko.csv"
-result_file.parent.mkdir(exist_ok=True)
+    for f in files:
+        delimiter = delimiters.get(f.name, ",")
+        with open(f, newline='', encoding='utf-8') as csvfile:
+            reader = csv.reader(csvfile, delimiter=delimiter)
+            file_headers = next(reader)
 
+            if headers is None:
+                headers = file_headers
+                unique_rows.append(headers)
 
-seen = set()
-unique_rows = []
-headers = None
+            for row in reader:
+                row_tuple = tuple(row)
+                if row_tuple not in seen:
+                    seen.add(row_tuple)
+                    unique_rows.append(row_tuple)
 
-delimiters = {
-    "rmc.csv": ";",
-    "r-m-c.csv": ","
-}
+    result_file.parent.mkdir(exist_ok=True)
+    with open(result_file, "w", newline='', encoding='utf-8') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerows(unique_rows)
 
-for f in files:
-    delimiter = delimiters.get(f.name, ",")
-    with open(f, newline='', encoding='utf-8') as csvfile:
-        reader = csv.reader(csvfile, delimiter=delimiter)
-        file_headers = next(reader)
-
-        if headers is None:
-            headers = file_headers
-            unique_rows.append(headers)
-
-        for row in reader:
-            row_tuple = tuple(row)
-            if row_tuple not in seen:
-                seen.add(row_tuple)
-                unique_rows.append(row_tuple)
+    print(f"✅ Файл без дублікатів збережено у {result_file}")
 
 
-with open(result_file, "w", newline='', encoding='utf-8') as csvfile:
-    writer = csv.writer(csvfile)
-    writer.writerows(unique_rows)
+if __name__ == "__main__":
+    base = Path(__file__).parent.parent
 
-print(f"✅ Файл без дублікатів збережено у {result_file}")
+    files = [
+        base / "ideas_for_test" / "work_with_csv" / "r-m-c.csv",
+        base / "ideas_for_test" / "work_with_csv" / "rmc.csv"
+    ]
+    result_file = Path(__file__).parent / "result" / "result_nozhko.csv"
+
+
+    remove_duplicates(files, result_file)
