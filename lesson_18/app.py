@@ -3,7 +3,7 @@ import os
 
 app = Flask(__name__)
 
-upload_directory = './uploads'
+upload_directory = os.path.join(app.root_path, "uploads")
 if not os.path.exists(upload_directory):
     os.makedirs(upload_directory)
 
