@@ -34,7 +34,7 @@ pipeline {
                         --ignore=lesson_29 \
                         --ignore=lesson_24 \
                         --junitxml=result.xml \
-                        --alluredir=allure-results
+                        PYTHONIOENCODING=utf-8 --alluredir=allure-results
 
                 '''
             }
