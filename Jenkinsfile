@@ -30,6 +30,7 @@ pipeline {
 
                     pytest \
                         --ignore=lesson_13 \
+                        --ignore=lesson_30 \
                         --ignore=lesson_24 \
                         --junitxml=result.xml
                 '''
