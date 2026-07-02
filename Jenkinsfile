@@ -26,6 +26,7 @@ pipeline {
         stage('Run tests') {
             steps {
                 sh '''
+                     export PYTHONIOENCODING=utf-8
                     . venv/bin/activate
 
                     pytest \
@@ -34,7 +35,7 @@ pipeline {
                         --ignore=lesson_29 \
                         --ignore=lesson_24 \
                         --junitxml=result.xml \
-                        PYTHONIOENCODING=utf-8 --alluredir=allure-results
+                        --alluredir=allure-results
 
                 '''
             }
