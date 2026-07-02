@@ -19,6 +19,15 @@ pipeline {
             }
         }
 
+        stage('Install Playwright browsers') {
+            steps {
+                sh '''
+                    . venv/bin/activate
+                    playwright install --with-deps
+                '''
+            }
+        }
+
         stage('Run tests') {
             steps {
                 sh '''
