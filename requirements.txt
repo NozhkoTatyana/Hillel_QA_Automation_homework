@@ -1,0 +1,4 @@
+psycopg2_binary==2.9.12
+pytest==9.0.2
+python-dotenv==1.2.2
+playwright==1.57.0
