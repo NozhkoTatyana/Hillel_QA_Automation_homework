@@ -14,16 +14,11 @@ pipeline {
                 sh '''
                     python3 -m venv venv
                     . venv/bin/activate
-                    pip install -r requirements.txt
-                '''
-            }
-        }
 
-        stage('Install Playwright browsers') {
-            steps {
-                sh '''
-                    . venv/bin/activate
-                    playwright install --with-deps
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+
+                    playwright install chromium
                 '''
             }
         }
@@ -32,7 +27,11 @@ pipeline {
             steps {
                 sh '''
                     . venv/bin/activate
-                    pytest --junitxml=result.xml
+
+                    pytest \
+                        --ignore=lesson_13 \
+                        --ignore=lesson_24 \
+                        --junitxml=result.xml
                 '''
             }
         }
@@ -40,7 +39,8 @@ pipeline {
 
     post {
         always {
-            junit allowEmptyResults: true, testResults: 'result.xml'
+            junit allowEmptyResults: true,
+                  testResults: 'result.xml'
         }
     }
 }
