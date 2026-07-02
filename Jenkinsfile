@@ -11,14 +11,20 @@ pipeline {
 
         stage('Install dependencies') {
             steps {
-                sh 'python3 -m pip install --upgrade pip'
-                sh 'python3 -m pip install -r requirements.txt'
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install -r requirements.txt
+                '''
             }
         }
 
         stage('Run tests') {
             steps {
-                sh 'python3 -m pytest --junitxml=result.xml'
+                sh '''
+                    . venv/bin/activate
+                    pytest --junitxml=result.xml
+                '''
             }
         }
     }
