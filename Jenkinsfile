@@ -33,7 +33,9 @@ pipeline {
                         --ignore=lesson_30 \
                         --ignore=lesson_29 \
                         --ignore=lesson_24 \
-                        --junitxml=result.xml
+                        --junitxml=result.xml \
+                        --alluredir=allure-results
+
                 '''
             }
         }
