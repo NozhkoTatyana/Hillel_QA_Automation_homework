@@ -25,7 +25,7 @@ pipeline {
 
     post {
         always {
-            junit 'result.xml'
+            junit allowEmptyResults: true, testResults: 'result.xml'
         }
     }
 }
